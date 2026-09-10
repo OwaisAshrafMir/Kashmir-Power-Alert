@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --color-snow: #f6f8f7;
+  --color-mist: #e8eef0;
+  --color-ink: #122018;
+  --color-muted: #64748b;
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
+  --color-primary: #0b5f4b;
+  --color-primary-dark: #084536;
+  --color-danger: #b42318;
+  --color-warn: #b54708;
+  --color-ok: #067647;
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+}
+
+.dark {
+  --color-snow: #0b1411;
+  --color-mist: #16231e;
+  --color-ink: #e8f2ec;
+  --color-muted: #94a3b8;
+  --color-card: #121c18;
+  --color-border: #24332c;
+  --color-primary: #2dd4a8;
+  --color-primary-dark: #1f9f7f;
+  --color-danger: #f97066;
+  --color-warn: #fdb022;
+  --color-ok: #32d583;
+}
+
+@theme inline {
+  --color-background: var(--color-snow);
+  --color-foreground: var(--color-ink);
+  --font-sans: var(--font-body);
+}
+
+body {
+  background:
+    radial-gradient(ellipse 70% 40% at 0% 0%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent),
+    radial-gradient(ellipse 50% 30% at 100% 0%, color-mix(in oklab, var(--color-warn) 10%, transparent), transparent),
+    var(--color-snow);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  min-height: 100vh;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+@keyframes rise-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(220%); }
+}
+
+@keyframes confetti {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(70px) scale(0.4); opacity: 0; }
+}
+
+.animate-rise {
+  animation: rise-in 0.5s ease-out both;
+}
+
+.card-surface {
+  border: 1px solid var(--color-border);
+  background: var(--color-card);
+  color: var(--color-ink);
+}
+
+.muted {
+  color: var(--color-muted);
+}

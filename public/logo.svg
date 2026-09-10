@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Kashmir Power Alerts">
+  <defs>
+    <linearGradient id="mtn" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1a4d6d"/>
+      <stop offset="55%" stop-color="#0d2f4a"/>
+      <stop offset="100%" stop-color="#071a2c"/>
+    </linearGradient>
+    <linearGradient id="sun" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#ffe566"/>
+      <stop offset="100%" stop-color="#f5b400"/>
+    </linearGradient>
+    <clipPath id="disc">
+      <circle cx="256" cy="256" r="236"/>
+    </clipPath>
+  </defs>
+
+  <!-- Outer ring -->
+  <circle cx="256" cy="256" r="248" fill="#0a2744"/>
+  <circle cx="256" cy="256" r="236" fill="#ffffff"/>
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#0a2744" stroke-width="10"/>
+
+  <!-- Inner scene -->
+  <g clip-path="url(#disc)">
+    <!-- Sky / sun glow -->
+    <circle cx="256" cy="188" r="78" fill="url(#sun)" opacity="0.95"/>
+    <circle cx="256" cy="188" r="58" fill="none" stroke="#ffe98a" stroke-width="6" opacity="0.7"/>
+    <circle cx="256" cy="188" r="42" fill="none" stroke="#fff3b0" stroke-width="4" opacity="0.8"/>
+
+    <!-- Mountains -->
+    <path d="M70 290 L150 170 L190 230 L230 140 L270 210 L310 120 L360 220 L420 165 L470 290 Z" fill="url(#mtn)"/>
+    <path d="M150 170 L168 148 L190 230 Z" fill="#eef6ff" opacity="0.95"/>
+    <path d="M230 140 L248 118 L270 210 Z" fill="#eef6ff" opacity="0.95"/>
+    <path d="M310 120 L332 98 L360 220 Z" fill="#eef6ff" opacity="0.95"/>
+
+    <!-- Utility poles -->
+    <g stroke="#071a2c" stroke-width="3.5" stroke-linecap="round">
+      <line x1="128" y1="250" x2="128" y2="300"/>
+      <line x1="116" y1="258" x2="140" y2="258"/>
+      <line x1="116" y1="268" x2="140" y2="268"/>
+      <path d="M140 258 Q190 250 230 240" fill="none"/>
+      <path d="M140 268 Q190 262 230 255" fill="none"/>
+
+      <line x1="384" y1="245" x2="384" y2="300"/>
+      <line x1="372" y1="253" x2="396" y2="253"/>
+      <line x1="372" y1="263" x2="396" y2="263"/>
+      <path d="M372 253 Q320 248 286 242" fill="none"/>
+      <path d="M372 263 Q320 258 286 254" fill="none"/>
+    </g>
+
+    <!-- Lightning -->
+    <path d="M268 70 L236 170 L258 170 L232 268 L308 148 L278 148 L310 70 Z"
+          fill="#ffd400" stroke="#0a2744" stroke-width="6" stroke-linejoin="round"/>
+
+    <!-- Small sparks -->
+    <g fill="#ffd400" stroke="#0a2744" stroke-width="2">
+      <path d="M190 95 l6 14 14-6 -10 12 12 8 -16 2 -2 16 -8-14 -16 4 10-12 -8-12z"/>
+      <path d="M330 108 l5 11 11-5 -8 9 9 6 -12 2 -2 12 -6-10 -12 3 8-9 -6-9z"/>
+    </g>
+
+    <!-- Text band -->
+    <path d="M78 318 Q256 360 434 318 L420 430 Q256 470 92 430 Z" fill="#ffffff"/>
+    <path d="M92 318 Q256 352 420 318" fill="none" stroke="#0a2744" stroke-width="4"/>
+
+    <text x="256" y="372" text-anchor="middle" font-family="Arial Black, Arial, sans-serif"
+          font-size="42" font-weight="800" fill="#0a2744" letter-spacing="1">KASHMIR</text>
+    <text x="256" y="408" text-anchor="middle" font-family="Arial Black, Arial, sans-serif"
+          font-size="22" font-weight="800" fill="#0a2744" letter-spacing="2">POWER ALERTS</text>
+
+    <!-- Side bolts near text -->
+    <path d="M108 392 l10 -18 6 4 -6 10 10 2 -14 18 -4-10 -12 2z" fill="#0a2744"/>
+    <path d="M404 392 l-10 -18 -6 4 6 10 -10 2 14 18 4-10 12 2z" fill="#0a2744"/>
+
+    <!-- Shikara -->
+    <g transform="translate(256 438)">
+      <path d="M-42 0 Q0 18 42 0 Q20 8 0 10 Q-20 8 -42 0 Z" fill="#0a2744"/>
+      <path d="M-8 -2 L0 -22 L8 -2" fill="none" stroke="#0a2744" stroke-width="3" stroke-linecap="round"/>
+      <path d="M-28 12 Q0 20 28 12" fill="none" stroke="#0a2744" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-22 18 Q0 26 22 18" fill="none" stroke="#0a2744" stroke-width="2" stroke-linecap="round"/>
+    </g>
+  </g>
+
+  <!-- Chinar leaves around ring -->
+  <g fill="#0a2744">
+    <g transform="translate(256 34) scale(0.55)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+      <path d="M0 -10 C12 -12 18 -4 8 6"/>
+      <path d="M0 -10 C-12 -12 -18 -4 -8 6"/>
+    </g>
+    <g transform="translate(340 52) rotate(35) scale(0.5)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+    <g transform="translate(172 52) rotate(-35) scale(0.5)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+    <g transform="translate(400 100) rotate(60) scale(0.48)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+    <g transform="translate(112 100) rotate(-60) scale(0.48)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+    <g transform="translate(430 168) rotate(80) scale(0.45)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+    <g transform="translate(82 168) rotate(-80) scale(0.45)">
+      <path d="M0 -18 C8 -8 10 2 0 18 C-10 2 -8 -8 0 -18 Z"/>
+    </g>
+  </g>
+
+  <!-- Bottom wave accents on ring -->
+  <path d="M170 470 Q190 456 210 470 Q230 484 250 470" fill="none" stroke="#0a2744" stroke-width="3" stroke-linecap="round"/>
+  <path d="M262 470 Q282 456 302 470 Q322 484 342 470" fill="none" stroke="#0a2744" stroke-width="3" stroke-linecap="round"/>
+</svg>
