@@ -17,7 +17,12 @@ export async function GET(request: Request) {
   const { notices, health } = await getShutdownNotices();
 
   let filtered = notices.filter((n) => n.status !== "past");
-
+  const showingPastFallback = filtered.length === 0 && notices.length > 0;
+  if (showingPastFallback) {
+    filtered = [...notices]
+      .sort((a, b) => (b.startsAt || "").localeCompare(a.startsAt || ""))
+      .slice(0, 20);
+  }
   if (district) {
     filtered = filtered.filter(
       (n) =>
@@ -37,5 +42,6 @@ export async function GET(request: Request) {
     notices: filtered,
     health,
     count: filtered.length,
+    showingPastFallback,
   });
 }

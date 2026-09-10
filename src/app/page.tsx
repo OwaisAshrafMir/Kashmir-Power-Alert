@@ -12,15 +12,19 @@ import { LivePulse } from "@/components/home/LivePulse";
 import { KashmirFactsCarousel } from "@/components/home/KashmirFactsCarousel";
 import { AllClearBanner } from "@/components/home/AllClearBanner";
 import { VisitStreak } from "@/components/home/VisitStreak";
+import { SourceDisclaimerModal } from "@/components/home/SourceDisclaimerModal";
 import {
   OfficialSiteMaintenance,
   isOfficialFeedDown,
 } from "@/components/status/OfficialSiteMaintenance";
 import { Badge } from "@/components/ui/Primitives";
-import { APP_NAME, APP_TAGLINE, HELPLINE_PRIMARY, KPDCL_NOTIFICATIONS_URL } from "@/lib/constants";
+import { APP_NAME, APP_TAGLINE, HELPLINE_PRIMARY, KPDCL_PORTAL_NOTIFICATIONS_URL } from "@/lib/constants";
 import { getShutdownNotices } from "@/lib/shutdowns/cache";
 import { getCurrentProfile, getUserSettings } from "@/lib/queries/profiles";
 import { matchesUserArea } from "@/lib/localities";
+
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function HomePage() {
   const [{ notices, health }, profile] = await Promise.all([
@@ -45,6 +49,7 @@ export default async function HomePage() {
           <OutagePrepChecklist />
           <KashmirFactsCarousel />
         </div>
+        <SourceDisclaimerModal />
       </div>
     );
   }
@@ -80,6 +85,7 @@ export default async function HomePage() {
 
   return (
     <div>
+      <SourceDisclaimerModal />
       <section className="border-b border-emerald-900/10 bg-[linear-gradient(135deg,#0b5f4b,#0a3f34)] text-white">
         <div className="mx-auto max-w-5xl px-4 py-12 md:py-16">
           <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-100/80">
@@ -246,7 +252,7 @@ export default async function HomePage() {
             {" · "}
             <a
               className="font-semibold text-[var(--color-primary)]"
-              href={KPDCL_NOTIFICATIONS_URL}
+              href={KPDCL_PORTAL_NOTIFICATIONS_URL}
               target="_blank"
               rel="noreferrer"
             >

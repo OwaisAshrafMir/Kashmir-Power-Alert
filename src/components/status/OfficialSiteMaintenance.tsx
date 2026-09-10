@@ -5,12 +5,14 @@ import {
   APP_NAME,
   HELPLINE_PRIMARY,
   HELPLINE_TOLL_FREE,
-  KPDCL_NOTIFICATIONS_URL,
+  KPDCL_PORTAL_NOTIFICATIONS_URL,
+  KPDCL_PORTAL_URL,
 } from "@/lib/constants";
 import type { IngestHealth } from "@/lib/types";
+import { isLiveOfficialSource } from "@/lib/shutdowns/sources";
 
 export function isOfficialFeedDown(health: IngestHealth): boolean {
-  return health.source !== "kpdcl";
+  return !isLiveOfficialSource(health.source);
 }
 
 type Props = {
@@ -35,17 +37,16 @@ export function OfficialSiteMaintenance({ health, compact = false }: Props) {
           Temporary service pause
         </p>
         <h1 className="mt-2 font-[family-name:var(--font-display)] text-3xl text-[var(--color-ink)]">
-          Official KPDCL site is unreachable
+          Official shutdown feeds are unreachable
         </h1>
         <p className="mt-4 text-sm leading-relaxed text-[var(--color-muted)]">
-          This is <strong className="text-[var(--color-ink)]">not an issue with {APP_NAME}</strong>. Our
-          app depends on the official KPDCL / JKPDD notifications page for live shutdown data. That
-          official website is currently down or not responding, so we are pausing alerts until it
-          comes back.
+          This is <strong className="text-[var(--color-ink)]">not an issue with {APP_NAME}</strong>. We
+          check official KPDCL and J&amp;K DIPR sources for live shutdown data. Those feeds are
+          currently down or empty, so we are pausing alerts until an official source responds.
         </p>
         <p className="mt-3 text-sm text-[var(--color-muted)]">
-          Please try again later. As soon as the official site is reachable, live notices will
-          appear here automatically.
+          Please try again later. As soon as an official feed is reachable, live notices will appear
+          here automatically.
         </p>
 
         {health.lastFetchAt ? (
@@ -57,12 +58,20 @@ export function OfficialSiteMaintenance({ health, compact = false }: Props) {
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <a
-            href={KPDCL_NOTIFICATIONS_URL}
+            href={KPDCL_PORTAL_NOTIFICATIONS_URL}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-4 py-2.5 text-sm font-semibold text-white dark:text-[#06241b]"
           >
-            Open official KPDCL page <ExternalLink className="h-4 w-4" />
+            Open KPDCL notices <ExternalLink className="h-4 w-4" />
+          </a>
+          <a
+            href={KPDCL_PORTAL_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-xl border border-[var(--color-border)] bg-[var(--color-card)] px-4 py-2.5 text-sm font-semibold text-[var(--color-ink)]"
+          >
+            KPDCL portal <ExternalLink className="h-4 w-4" />
           </a>
           <a
             href={`tel:${HELPLINE_PRIMARY}`}

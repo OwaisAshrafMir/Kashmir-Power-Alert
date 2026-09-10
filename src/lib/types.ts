@@ -2,6 +2,15 @@ export type UserRole = "user" | "admin";
 export type PlanType = "free" | "pro";
 export type ShutdownStatus = "active" | "upcoming" | "past";
 
+/** Where a notice (or the ingest health) came from. */
+export type NoticeSource =
+  | "kpdcl"
+  | "kpdcl_portal"
+  | "dipr"
+  | "press"
+  | "sample"
+  | "unavailable";
+
 export interface Profile {
   id: string;
   full_name: string | null;
@@ -35,7 +44,7 @@ export interface ShutdownNotice {
   startsAt: string | null;
   endsAt: string | null;
   dates: string[];
-  source: "kpdcl" | "sample" | "unavailable";
+  source: NoticeSource;
   sourceUrl: string;
   sourceLabel: string;
   publishedAt: string | null;
@@ -46,6 +55,6 @@ export interface IngestHealth {
   lastFetchAt: string | null;
   lastSuccessAt: string | null;
   noticeCount: number;
-  source: string;
+  source: NoticeSource | string;
   error: string | null;
 }

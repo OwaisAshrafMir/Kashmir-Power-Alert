@@ -7,6 +7,8 @@ import {
 import { getShutdownNotices } from "@/lib/shutdowns/cache";
 
 export const metadata: Metadata = { title: "Shutdowns" };
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 type Props = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -24,6 +26,12 @@ export default async function ShutdownsPage({ searchParams }: Props) {
   }
 
   let list = notices.filter((n) => n.status !== "past");
+  const showingPastFallback = list.length === 0 && notices.length > 0;
+  if (showingPastFallback) {
+    list = [...notices]
+      .sort((a, b) => (b.startsAt || "").localeCompare(a.startsAt || ""))
+      .slice(0, 20);
+  }
   if (district) {
     list = list.filter((n) => n.districts.some((d) => d.toLowerCase() === district.toLowerCase()));
   }
@@ -42,7 +50,12 @@ export default async function ShutdownsPage({ searchParams }: Props) {
       <p className="mt-2 text-slate-600">
         Full Kashmir shutdown list · {list.length} notices · source {health.source}
       </p>
-
+      {showingPastFallback ? (
+        <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 dark:border-amber-500/30 dark:bg-amber-950/40 dark:text-amber-100">
+          No active/upcoming official notices right now. Showing the most recent past circulars from
+          the official feed.
+        </p>
+      ) : null}
       <form className="mt-6 flex flex-wrap gap-3">
         <input
           name="q"

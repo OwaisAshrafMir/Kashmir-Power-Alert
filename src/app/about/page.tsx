@@ -17,7 +17,9 @@ export default function AboutPage() {
           locality, and optionally receive browser push notifications.
         </p>
         <p>
-          Shutdown content is fetched live from official KPDCL/JKPDD-style sources when available.
+          Shutdown content is fetched live from official KPDCL / DIPR sources when they work.
+          If those pages are down or stale, we also parse recent press reprints that carry the
+          official “Chief Engineer, Distribution, KPDCL” wording (not original news reporting).
           We do not keep a permanent outage database — only your account, settings and push
           subscriptions are stored in Supabase.
         </p>
