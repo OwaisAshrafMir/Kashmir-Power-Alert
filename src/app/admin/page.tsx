@@ -21,7 +21,9 @@ export default async function AdminPage() {
         <div className="rounded-2xl border border-slate-200 bg-white p-5">
           <p className="text-sm text-slate-500">Source</p>
           <p className="mt-2">
-            <Badge tone={health.source === "kpdcl" ? "ok" : "warn"}>{health.source}</Badge>
+            <Badge tone={health.source === "unavailable" || health.source === "sample" ? "warn" : "ok"}>
+              {health.source}
+            </Badge>
           </p>
         </div>
         <div className="rounded-2xl border border-slate-200 bg-white p-5">

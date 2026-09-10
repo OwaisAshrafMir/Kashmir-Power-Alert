@@ -2,9 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { Radio } from "lucide-react";
+import { isLiveOfficialSource, sourceDisplayLabel } from "@/lib/shutdowns/sources";
 
 export function LivePulse({ source, lastFetchAt }: { source: string; lastFetchAt?: string | null }) {
-  const live = source === "kpdcl";
+  const live = isLiveOfficialSource(source);
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -26,7 +27,7 @@ export function LivePulse({ source, lastFetchAt }: { source: string; lastFetchAt
         )}
       </span>
       <Radio className="h-3.5 w-3.5" />
-      {live ? `Live KPDCL feed` : `Standby · ${source}`}
+      {sourceDisplayLabel(source)}
       {lastFetchAt ? (
         <span className="hidden sm:inline" key={tick}>
           · {new Date(lastFetchAt).toLocaleTimeString("en-IN")}
