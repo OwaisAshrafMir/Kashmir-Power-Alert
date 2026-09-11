@@ -128,10 +128,24 @@ create policy "Settings owner access"
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
 
-create policy "Push subs owner access"
-  on public.push_subscriptions for all
+drop policy if exists "Push subs owner access" on public.push_subscriptions;
+
+create policy "Push subs select own"
+  on public.push_subscriptions for select
+  using (auth.uid() = user_id);
+
+create policy "Push subs insert own"
+  on public.push_subscriptions for insert
+  with check (auth.uid() = user_id);
+
+create policy "Push subs update own"
+  on public.push_subscriptions for update
   using (auth.uid() = user_id)
   with check (auth.uid() = user_id);
+
+create policy "Push subs delete own"
+  on public.push_subscriptions for delete
+  using (auth.uid() = user_id);
 
 create policy "Admins read fingerprints"
   on public.alert_fingerprints for select

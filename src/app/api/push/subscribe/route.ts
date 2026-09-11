@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/utils";
 
 export async function POST(request: Request) {
@@ -22,7 +23,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid subscription" }, { status: 400 });
   }
 
-  const { error } = await supabase.from("push_subscriptions").upsert(
+  // Service role: same browser endpoint can move from a previous account to this user.
+  const admin = createAdminClient();
+  const { error } = await admin.from("push_subscriptions").upsert(
     {
       user_id: user.id,
       endpoint,

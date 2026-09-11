@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ForceIngestButton } from "@/components/admin/ForceIngestButton";
+import { EmailSetupCard } from "@/components/admin/EmailSetupCard";
 import { Badge } from "@/components/ui/Primitives";
 import { getShutdownNotices } from "@/lib/shutdowns/cache";
 
@@ -40,6 +41,8 @@ export default async function AdminPage() {
         </p>
       ) : null}
 
+      <EmailSetupCard />
+
       <div className="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
         <h2 className="font-semibold">Actions</h2>
         <p className="mt-1 text-sm text-slate-600">
@@ -47,6 +50,12 @@ export default async function AdminPage() {
         </p>
         <div className="mt-4">
           <ForceIngestButton />
+        </div>
+        <div className="mt-6 border-t border-slate-100 pt-5">
+          <p className="text-sm text-slate-600">Send a branded test message via Info@wajed.co SMTP.</p>
+          <div className="mt-3">
+            <TestSmtpButton />
+          </div>
         </div>
       </div>
     </div>
