@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ForceIngestButton } from "@/components/admin/ForceIngestButton";
+import { TestSmtpButton } from "@/components/admin/TestSmtpButton";
 import { EmailSetupCard } from "@/components/admin/EmailSetupCard";
 import { Badge } from "@/components/ui/Primitives";
 import { getShutdownNotices } from "@/lib/shutdowns/cache";
